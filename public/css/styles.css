@@ -1,0 +1,161 @@
+/* Resets */
+*{
+  box-sizing: border-box; 
+  padding: 0; 
+  margin: 0;
+}
+
+ul{
+  list-style-type: none;
+}
+a{
+  text-decoration: none;
+}
+
+/* General Styles  */
+body{
+  font-family: 'Montserrat', sans-serif;
+  background: #F2F2F2; 
+  font-size: 1rem;
+  color: #404040; 
+}
+
+h1,
+h2,
+h3{
+  font-family: 'Playfair Display', serif;
+  color: #8C6E5D; 
+}
+
+/* Header Styling */
+header{
+  width: 100vw; 
+}
+.main-nav{
+  max-width: 900px; 
+  display: flex; 
+  margin: 1rem auto; 
+  font-size: 1.3rem; 
+  justify-content: space-between;
+  align-items: baseline;
+  line-height: 2rem;
+  padding: 0 0.5rem; 
+}
+.main-nav__item a{
+  color: #8C6E5D;
+}
+
+.main-heading__container{
+  margin: 1rem auto; 
+  width: fit-content; 
+}
+
+.main-heading{
+  text-align: center;
+  border-bottom: 1px solid #8C6E5D; 
+  line-height: 3.2rem;
+}
+
+/* Message Cards */
+.card-container{
+  padding: 0.5rem; 
+  margin: 0 auto; 
+  max-width: 800px;
+}
+
+.card{
+  background: rgb(233, 233, 233); 
+  margin: 0.8rem auto; 
+  display: flex; 
+  justify-content: space-between;
+  align-items: center;
+
+  border-radius: 5px;
+  position: relative; 
+}
+
+.thumbnail-container{
+  margin: 0 0.5rem; 
+  padding: 0.1rem 0; 
+  max-width: 15rem;
+  min-width: 4rem;
+  width: 12rem; 
+  text-align: center;
+}
+
+.thumbnail-container > img{
+  display: inline-block; 
+  width: 95%; 
+  vertical-align: middle;
+}
+
+.card-content{
+  padding: 1rem; 
+}
+.card-content > h3{
+  line-height: 2.2rem;
+}
+
+.card-content > p{
+  font-size: 0.8rem; 
+}
+
+.card-content .card-content__timestamp{
+  color: #A6968D; 
+  position: absolute;
+  top: 1.5rem; 
+  right: 1.9rem; 
+  font-size: 0.7rem;
+}
+
+
+/* New Post Styling */
+.new-post{
+  width: 100vw; 
+}
+
+.new-post__form{
+  width: 85%; 
+  margin: 0 auto; 
+}
+
+.author-label{
+  display: block;
+  width: 80%;
+  margin: 1rem auto;
+  max-width: 700px;
+}
+
+.author-label input{
+  margin-left: 1rem;
+  font-size: 1.1rem;
+  width: 60%; 
+  line-height: 1.5rem;
+}
+
+.new-post__form > textarea{
+  font-size: 1rem;
+  display: block;
+  margin: 1rem auto; 
+  width: 90%; 
+  height: 40vh; 
+  outline: none; 
+  border:1px solid #8C6E5D; 
+  padding: 0.5rem; 
+  border-radius: 5px;
+  max-width: 800px;
+}
+
+.new-post__form > button{
+  line-height: 1.5;
+  font-size: 1rem;
+  background: #A6968D; 
+  color: #F2F2F2; 
+  padding: 0.3rem 0.5rem; 
+  border-radius: 3px;
+  width: 90%; 
+  margin: 0.5rem auto; 
+  display: block; 
+  max-width: 800px; 
+  
+}
