@@ -1,3 +1,4 @@
+const moment = require("moment")
 const Post = require("../models/post").Post
 
 const newPostForm = (req, res, next)=>{
@@ -5,15 +6,22 @@ const newPostForm = (req, res, next)=>{
 }
 
 const createPost = async (req, res)=>{
-  console.log(req.body)
-  console.log(" Create ROUTE IS UNDER CONSTRUCTION")
   post = new Post(req.body.content, {username: req.body.author})
   await post.save()
   res.redirect("/posts")
 }
 
-const viewPosts = (req, res)=>{
-  res.render("index")
+const viewPosts = async (req, res)=>{
+  // Get posts from db 
+  const skip = 0
+  const noPostsPerPage = 100
+  postsArray = await Post.fetchAll(skip, noPostsPerPage)
+  // Add on the image url & timestamp 
+  postsArray.forEach((post)=>{
+    post.lastModified = moment(post._id.getTimestamp()).fromNow()
+    post.imageURL = `https://avatars.dicebear.com/v2/gridy/${post._id.toString()}.svg`
+  })
+  res.render("index", {posts: postsArray})
 }
 
 const viewPost = (req, res)=>{

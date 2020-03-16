@@ -19,8 +19,8 @@ app.use(express.urlencoded({extended:true}))
 app.use(express.static(publicDir))
 
 // Routes
+app.get("/", (req, res)=> res.redirect("/posts"))
 app.use("/posts", postsRouter) // Post routes
-app.use("/", (req, res)=>{res.redirect("/posts")})
 // 404 Pages
 app.use(errorController.show404)
 
@@ -34,8 +34,3 @@ const main = async()=>{
 }
 
 main()
-
-// const moment = require("moment")
-// const myDate = Date.now()
-// console.log(myDate)
-// console.log(moment(myDate).isoWeekday())

@@ -1,8 +1,6 @@
 const show404 = (req, res)=>{
-  console.log("")
+  console.log("404 Page")
   res.status(400).render("not-found")
-  // res.status(404).send("404 Error")
-  
 }
 
 

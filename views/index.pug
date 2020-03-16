@@ -4,6 +4,7 @@ html(lang='en')
     meta(charset='UTF-8')
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     link(href='https://fonts.googleapis.com/css2?family=Montserrat&family=Playfair+Display:wght@400;700&display=swap', rel='stylesheet')
+    link(href="/images/favicon_io/favicon-16x16.png", rel="icon")
     link(rel='stylesheet', href='/css/styles.css')
     title Main Board
   body
@@ -20,54 +21,11 @@ html(lang='en')
     .main-heading__container
       h1.main-heading Posts
     article.card-container
-      .card
-        .thumbnail-container
-          img(src='https://avatars.dicebear.com/v2/gridy/wing.svg', alt='profile-thumbnail')
-        .card-content
-          h3 Dick Grayson
-          p
-            | Cupcake ipsum dolor sit amet apple pie marshmallow jelly-o tiramisu.
-            | Danish gummi bears apple pie sweet roll bear claw marzipan brownie cake.
-            | Gingerbread jelly beans dragée topping marshmallow danish.
-          p.card-content__timestamp 123 Mins Ago
-      .card
-        .thumbnail-container
-          img(src='https://avatars.dicebear.com/v2/gridy/super.svg', alt='profile-thumbnail')
-        .card-content
-          h3 Clark Kent
-          p
-            | Cupcake ipsum dolor sit amet apple pie marshmallow jelly-o tiramisu.
-            | Danish gummi bears apple pie sweet roll bear claw marzipan brownie cake.
-            | Gingerbread jelly beans dragée topping marshmallow danish.
-          p.card-content__timestamp 123 Mins Ago
-      .card
-        .thumbnail-container
-          img(src='https://avatars.dicebear.com/v2/gridy/domino.svg', alt='profile-thumbnail')
-        .card-content
-          h3 Neena Thurman
-          p
-            | Cupcake ipsum dolor sit amet apple pie marshmallow jelly-o tiramisu.
-            | Danish gummi bears apple pie sweet roll bear claw marzipan brownie cake.
-            | Gingerbread jelly beans dragée topping marshmallow danish.
-          p.card-content__timestamp 123 Mins Ago
-      .card
-        .thumbnail-container
-          img(src='https://avatars.dicebear.com/v2/gridy/shazam!!.svg', alt='profile-thumbnail')
-        .card-content
-          h3 Teth Adam
-          p
-            | Cupcake ipsum dolor sit amet apple pie marshmallow jelly-o tiramisu.
-            | Danish gummi bears apple pie sweet roll bear claw marzipan brownie cake.
-            | Gingerbread jelly beans dragée topping marshmallow danish.
-          p.card-content__timestamp 123 Mins Ago
-      .card
-        .thumbnail-container
-          img(src='https://avatars.dicebear.com/v2/gridy/withGreatPower.svg', alt='profile-thumbnail')
-        .card-content
-          h3 Peter Porker
-          p
-            | Cupcake ipsum dolor sit amet apple pie marshmallow jelly-o tiramisu.
-            | Danish gummi bears apple pie sweet roll bear claw marzipan brownie cake.
-            | Gingerbread jelly beans dragée topping marshmallow danish.
-          p.card-content__timestamp 123 Mins Ago
-    footer
+      each post in posts
+        .card
+          .thumbnail-container
+            img(src=post.imageURL, alt='profile-thumbnail')
+          .card-content
+            h3=post.author.username
+            p=post.message
+            p.card-content__timestamp #{post.lastModified}

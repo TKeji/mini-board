@@ -23,7 +23,7 @@ html(lang='en')
       form.new-post__form(method='POST', action='/posts')
         label.author-label(for='author', name="author")
           | Author
-          input(name="author", type='text' value="train")
+          input(name="author", type='text')
         textarea(placeholder='Tell the world something...', name='content')
         button.submit-button(type="submit") Submit
     footer

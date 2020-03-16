@@ -1,5 +1,6 @@
 const moment = require("moment")
 const getDB = require("../utils/database").getDB
+const collectionName = "posts"
 
 /*
   _id
@@ -20,16 +21,27 @@ class Post{
   }
 
   async save(){
-    const Post = getDB().collection("posts")
+    const Post = getDB().collection(collectionName)
     try{
       const post = await Post.insertOne({
         ...this,
         updatedAt: Date.now()
       })
-      console.log(post)
     } catch(e){
       console.log(e)
       throw new Error("Unable to save post")
+    }
+  }
+
+  static async fetchAll(skip=0, noPerPage=5){
+    const Post = getDB().collection(collectionName)
+    const sortFilter = {
+      "updatedAt": -1
+    }
+    try{
+      return await Post.find({}).limit(noPerPage).skip(skip*noPerPage).sort(sortFilter).toArray()
+    } catch(e){
+      throw Error("Unable to fetch posts")
     }
   }
 }
