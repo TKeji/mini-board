@@ -1,10 +1,14 @@
+const Post = require("../models/post").Post
+
 const newPostForm = (req, res, next)=>{
   res.render("new")
 }
 
-const createPost = (req, res)=>{
+const createPost = async (req, res)=>{
   console.log(req.body)
   console.log(" Create ROUTE IS UNDER CONSTRUCTION")
+  post = new Post(req.body.content, {username: req.body.author})
+  await post.save()
   res.redirect("/posts")
 }
 
