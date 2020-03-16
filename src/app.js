@@ -21,7 +21,7 @@ app.use(express.static(publicDir))
 app.use("/posts", postsRouter) // Post routes
 
 // 404 Pages
-app.use("*", errorController.show404)
+app.use(errorController.show404)
 
 app.listen(3000, ()=>{
   console.log("The server is running...")
