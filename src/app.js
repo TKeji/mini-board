@@ -1,5 +1,6 @@
 const path = require("path")
 const express = require("express")
+const methodOverride = require("method-override")
 const postsRouter = require("./routes/posts")
 const errorController = require("./controllers/error")
 const {mongoConnect} = require("./utils/database")
@@ -17,6 +18,7 @@ app.set("views", "views")
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(express.static(publicDir))
+app.use(methodOverride("_method"))
 
 // Routes
 app.get("/", (req, res)=> res.redirect("/posts"))

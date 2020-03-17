@@ -19,6 +19,7 @@ router.get("/", postsController.viewPosts)
 // /posts/:id
 router.get("/:id", postsController.viewPost)
 // UPDATE //
+router.get("/:id/edit", postsController.editPost)
 // /posts/:id
 router.patch("/:id", postsController.updatePost)
 // DELETE //

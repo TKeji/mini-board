@@ -66,6 +66,7 @@ header{
 .card{
   background: rgb(233, 233, 233); 
   margin: 0.8rem auto; 
+  min-width: 310px;
   display: flex; 
   justify-content: space-between;
   align-items: center;
@@ -90,6 +91,7 @@ header{
 }
 
 .card-content{
+  width: 90%; 
   padding: 1rem; 
 }
 .card-content > h3{
@@ -108,6 +110,46 @@ header{
   font-size: 0.7rem;
 }
 
+.icons{
+  margin-right: 0rem; 
+  display:flex; 
+  justify-content: flex-end;
+  padding-right: 1rem;
+}
+
+.icons > a{
+  /* width: fit-content; */
+  margin-left: 0.8rem; 
+}
+
+#trash-form{
+  margin-left: 0.8rem; 
+}
+#delete-button{
+  display: inline-block;
+  border: none; 
+  padding: 0;
+  background: none; 
+  width: fit-content; 
+  cursor: pointer;
+}
+
+
+#trash-icon{
+  color: rgba(255, 61,0, 0.3); 
+}
+#trash-icon:hover{
+  transition: color 0.3s ease-out;
+  color:#FF3D00;
+}
+
+#edit-icon{
+  color: rgba(144, 202, 249, 0.5); 
+}
+#edit-icon:hover{
+  transition: color 0.3s ease-out;
+  color: #90CAF9; 
+}
 
 /* New Post Styling */
 .new-post{

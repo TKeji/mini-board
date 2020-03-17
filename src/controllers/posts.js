@@ -25,11 +25,33 @@ const viewPosts = async (req, res)=>{
 }
 
 const viewPost = (req, res)=>{
-  res.send(" /:id ROUTE IS UNDER CONSTRUCTION")
+  res.send("READ /:id ROUTE IS UNDER CONSTRUCTION")
 }
 
-const updatePost = (req, res)=>{
-  res.send("Edit /:id ROUTE IS UNDER CONSTRUCTION")
+const editPost = async (req, res)=>{
+  try{
+    // Get user from db 
+    console.log(req.params)
+    const post = await Post.findById(req.params.id)
+    res.render("edit", post)
+  } catch(e){
+    console.log(e.message)
+    res.redirect("/", {error: e.message})
+  }
+}
+
+const updatePost = async (req, res)=>{
+  console.log("--------------")
+  try{
+    updateQuery = {
+      message: req.body.content
+    }
+    await Post.update(req.params.id, updateQuery)
+    res.redirect("/")
+  }catch(e){
+    console.log(e.message)
+    // throw new Error("Unable to find post")
+  }
 }
 
 const deletePost = (req, res)=>{
@@ -42,6 +64,7 @@ module.exports = {
   createPost, 
   viewPosts, 
   viewPost,
+  editPost,
   updatePost, 
   deletePost
 }

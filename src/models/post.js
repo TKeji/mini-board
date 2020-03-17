@@ -1,6 +1,7 @@
 const moment = require("moment")
 const getDB = require("../utils/database").getDB
 const collectionName = "posts"
+const {ObjectId} = require("mongodb")
 
 /*
   _id
@@ -12,6 +13,7 @@ const collectionName = "posts"
 
 class Post{
   constructor(message, author = {_id: undefined, username: "Admin"}){
+    this._id
     this.message = message 
     this.updatedAt = undefined
     this.author = {
@@ -42,6 +44,29 @@ class Post{
       return await Post.find({}).limit(noPerPage).skip(skip*noPerPage).sort(sortFilter).toArray()
     } catch(e){
       throw Error("Unable to fetch posts")
+    }
+  }
+
+  static async findById(id){
+    const Post = getDB().collection(collectionName)
+    try{ 
+      const post =  await Post.findOne({_id: ObjectId(id)})
+      post._id = new ObjectId(post._id)
+      // console.log(post)
+      return post 
+    } catch(e){
+      throw new Error("Post not found")
+    }
+  }
+
+  static async update(id, updateQuery){
+    const Post = getDB().collection(collectionName)
+    try{
+      console.log(updateQuery)
+      const post = await Post.updateOne({_id: ObjectId(id)}, {$set:updateQuery})
+    }catch(e){
+      console.log(e.message)
+      throw new Error("Unable to update")
     }
   }
 }

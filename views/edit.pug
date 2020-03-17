@@ -19,12 +19,12 @@ html(lang='en')
         li.main-nav__item
           a(href='#') Logout
     .main-heading__container
-      h1.main-heading Create New Post
+      h1.main-heading Edit Post
     article.new-post
-      form.new-post__form(method='POST', action='/posts')
+      form.new-post__form(method='POST', action=`/posts/${_id}?_method=PATCH`)
         label.author-label(for='author', name="author")
           | Author
-          input(name="author", type='text')
-        textarea(placeholder='Tell the world something...', name='content')
+          input(name="author", type='text', value=author.username disabled)
+        textarea(placeholder='Tell the world something...', name='content') #{message}
         button.submit-button(type="submit") Submit
     footer
