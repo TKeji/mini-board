@@ -66,7 +66,16 @@ class Post{
       const post = await Post.updateOne({_id: ObjectId(id)}, {$set:updateQuery})
     }catch(e){
       console.log(e.message)
-      throw new Error("Unable to update")
+      throw new Error("Unable to update post")
+    }
+  }
+
+  static async deleteById(id){
+    const Post = getDB().collection(collectionName)
+    try{
+      return await Post.deleteOne({_id: ObjectId(id)})
+    }catch(e){
+      throw new Error("Unable to delete Post")
     }
   }
 }

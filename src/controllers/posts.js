@@ -41,7 +41,6 @@ const editPost = async (req, res)=>{
 }
 
 const updatePost = async (req, res)=>{
-  console.log("--------------")
   try{
     updateQuery = {
       message: req.body.content
@@ -51,11 +50,17 @@ const updatePost = async (req, res)=>{
   }catch(e){
     console.log(e.message)
     // throw new Error("Unable to find post")
+    res.redirect("/")
   }
 }
 
-const deletePost = (req, res)=>{
-  res.send(" Delete /:id ROUTE IS UNDER CONSTRUCTION")
+const deletePost = async (req, res)=>{
+  try{
+    await Post.deleteById(req.params.id)
+  } catch(e){
+    console.log(e.message)
+  }
+  res.redirect("/")
 }
 
 
