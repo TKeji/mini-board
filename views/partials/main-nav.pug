@@ -1,10 +1,17 @@
 header
-      ul.main-nav
-        li.main-nav__item
-          a(href='/posts') Home
-        li.main-nav__item
-          a(href='/posts/new') New
-        li.main-nav__item
-          a(href='#') Login
-        li.main-nav__item
-          a(href='#') Logout
+  ul.main-nav
+    li.main-nav__item
+      a(href='/posts') Home
+    if loggedIn
+      li.main-nav__item
+        a(href='/posts/new') New Post
+      li.main-nav__item
+        a(href='/users/logout') Logout
+      li.main-nav__item
+        a(href='/users/safkldj') My Profile
+    if !loggedIn
+      li.main-nav__item
+        a(href='/users/new') Register
+      li.main-nav__item
+        a(href='/users/login') Login
+    

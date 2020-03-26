@@ -1,5 +1,5 @@
-const path = require("path")
 const express = require("express")
+const {isAuthenticated, isAuthorized} = require("../middleware/auth")
 
 const router = express.Router()
 
@@ -9,21 +9,18 @@ const postsController = require("../controllers/posts")
 
 // CREATE //
 // /posts/new. Render new form. 
-router.get("/new", postsController.newPostForm)
+router.get("/new", isAuthenticated, postsController.newPostForm)
 // /posts
-router.post("/", postsController.createPost)
+router.post("/", isAuthenticated, postsController.createPost)
 // READ //
 // /posts
 router.get("/", postsController.viewPosts)
-// READ SINGULAR POST
-// /posts/:id
-router.get("/:id", postsController.viewPost)
 // UPDATE //
-router.get("/:id/edit", postsController.editPost)
+router.get("/:id/edit", isAuthenticated, isAuthorized, postsController.editPost)
 // /posts/:id
-router.patch("/:id", postsController.updatePost)
+router.patch("/:id", isAuthenticated, isAuthorized, postsController.updatePost)
 // DELETE //
-router.delete("/:id", postsController.deletePost)
+router.delete("/:id", isAuthenticated, isAuthorized, postsController.deletePost)
 
 
 module.exports = router; 

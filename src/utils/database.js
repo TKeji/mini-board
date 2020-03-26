@@ -8,6 +8,7 @@ const mongoConnect = async(cb)=>{
     _db = client.db()
     cb()
   } catch(err){
+    console.log(err.message)
     throw new Error("Unable to connect to DB")
   }
 }

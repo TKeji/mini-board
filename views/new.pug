@@ -8,23 +8,14 @@ html(lang='en')
     link(rel='stylesheet', href='/css/styles.css')
     title New Post
   body
-    header
-      ul.main-nav
-        li.main-nav__item
-          a(href='/posts') Home
-        li.main-nav__item
-          a(href='/posts/new') New
-        li.main-nav__item
-          a(href='#') Login
-        li.main-nav__item
-          a(href='#') Logout
+    include partials/main-nav.pug
     .main-heading__container
       h1.main-heading Create New Post
     article.new-post
       form.new-post__form(method='POST', action='/posts')
         label.author-label(for='author', name="author")
           | Author
-          input(name="author", type='text')
+          input(name="author", type='text', value=username disabled)
         textarea(placeholder='Tell the world something...', name='content')
         button.submit-button(type="submit") Submit
     footer

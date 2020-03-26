@@ -12,13 +12,15 @@ const {ObjectId} = require("mongodb")
 */
 
 class Post{
-  constructor(message, author = {_id: undefined, username: "Admin"}){
+  constructor(message, author = {_id: undefined, username: "Admin", imageURL}){
+    console.log(author)
     this._id
     this.message = message 
     this.updatedAt = undefined
     this.author = {
       _id: author._id,
-      username: author.username
+      username: author.username,
+      imageURL: author.imageURL
     }
   }
 
@@ -30,7 +32,6 @@ class Post{
         updatedAt: Date.now()
       })
     } catch(e){
-      console.log(e)
       throw new Error("Unable to save post")
     }
   }
@@ -52,7 +53,6 @@ class Post{
     try{ 
       const post =  await Post.findOne({_id: ObjectId(id)})
       post._id = new ObjectId(post._id)
-      // console.log(post)
       return post 
     } catch(e){
       throw new Error("Post not found")
@@ -62,10 +62,8 @@ class Post{
   static async update(id, updateQuery){
     const Post = getDB().collection(collectionName)
     try{
-      console.log(updateQuery)
       const post = await Post.updateOne({_id: ObjectId(id)}, {$set:updateQuery})
     }catch(e){
-      console.log(e.message)
       throw new Error("Unable to update post")
     }
   }
@@ -80,6 +78,4 @@ class Post{
   }
 }
 
-module.exports = {
-  Post
-}
+module.exports = Post

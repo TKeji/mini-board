@@ -10,12 +10,10 @@ html(lang='en')
   body
     include partials/main-nav.pug
     .main-heading__container
-      h1.main-heading Edit Post
+      h1.main-heading Sign In
     article.new-post
-      form.new-post__form(method='POST', action=`/posts/${_id}?_method=PATCH`)
-        label.author-label(for='author', name="author")
-          | Author
-          input(name="author", type='text', value=author.username disabled)
-        textarea(placeholder='Tell the world something...', name='content') #{message}
-        button.submit-button(type="submit") Submit
+      form.new-user__form(method='POST', action='/users/login')
+        input(name="email", type='text' placeholder="email")
+        input(name="password", type='text' placeholder="password")
+        button.submit-button(type="submit") Sign In!
     footer

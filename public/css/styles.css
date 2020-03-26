@@ -188,7 +188,8 @@ header{
   max-width: 800px;
 }
 
-.new-post__form > button{
+.new-post__form > button, 
+.new-user__form > button{
   line-height: 1.5;
   font-size: 1rem;
   background: #A6968D; 
@@ -199,5 +200,28 @@ header{
   margin: 0.5rem auto; 
   display: block; 
   max-width: 800px; 
-  
+}
+
+
+
+/* New User Form */
+.new-user__form{
+  width: 85%; 
+  margin: 0 auto; 
+  max-width: 500px; 
+}
+
+.new-user__form > input{
+  display: block; 
+  width: 90%; 
+  margin: 1rem auto; 
+  line-height: 3rem;
+  border: none; 
+  border-bottom: 1px solid #A6968D;
+  padding-left: 1rem; 
+  letter-spacing: 0.15rem;
+}
+
+.new-user__form > .submit-button{
+  height: 3rem; 
 }

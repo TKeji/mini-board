@@ -9,23 +9,14 @@ html(lang='en')
     script(src='https://kit.fontawesome.com/4e9b8779c6.js', crossorigin='anonymous')
     title Main Board
   body
-    header
-      ul.main-nav
-        li.main-nav__item
-          a(href='/posts') Home
-        li.main-nav__item
-          a(href='/posts/new') New
-        li.main-nav__item
-          a(href='#') Login
-        li.main-nav__item
-          a(href='#') Logout
+    include partials/main-nav.pug
     .main-heading__container
       h1.main-heading Posts
     article.card-container
       each post in posts
         .card
           .thumbnail-container
-            img(src=post.imageURL, alt='profile-thumbnail')
+            img(src=post.author.imageURL, alt='profile-pic')
           .card-content
             h3=post.author.username
             p=post.message
