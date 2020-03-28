@@ -1,6 +1,9 @@
+const bcrypt = require("bcryptjs")
 const {ObjectId} = require("mongodb")
 const getdb = require("../utils/database").getDB
 const collectionName = "users"
+
+const SALT = 12
 
 /*
   User: 
@@ -25,7 +28,6 @@ class User{
     // If collection exists 
     if (collections.length === 0){
       try{
-        console.log("here1")
         // Create the collection
         await getdb().createCollection(collectionName, {
           validator: {
@@ -41,6 +43,10 @@ class User{
                   bsonType: "string",
                   description: "Email must be a string and is required"
                 }, 
+                password: {
+                  bsonType: "string",
+                  description: "Password must be a string and is required"
+                }, 
                 avatarURL: {
                   bsonType: "string", 
                   description: "Must be a string and required for each user", 
@@ -50,21 +56,23 @@ class User{
           }
         })
       } catch(e){
-        console.log("Creation Problem", e.message)
+        throw new Error("Couldn't Create Users Model\n Message:", e.message)
       }
       
       try{
-        console.log("here2")
         await getdb().collection(collectionName).createIndex({"email": 1}, {unique:true})
       } catch(e){
-        console.log("Index", e.message)
+        throw new Error("Couldn't Create Index on Emails\n Message:", e.message)
       }
     }
-    console.log(`${collectionName} model up and running`)
   }
 
   static async create(userDetails){
     try{
+      const {password} = userDetails
+      const hash = await bcrypt.hash(password, SALT)
+      userDetails.password = hash 
+      console.log("NEW USER\n", userDetails)
       const res = await getdb().collection(collectionName).insertOne(userDetails)
       return JSON.parse(res).ops[0] // return user obj
     }catch(e){
@@ -102,8 +110,13 @@ class User{
 
   }
 
-  static deleteBydId(id){
-
+  static async deleteBydId(id){
+    try{
+      const User = await getdb().collection(collectionName)
+      return User.deleteOne({_id: ObjectId(id)})
+    }catch (e){
+      throw new Error("Error deleting User\n ", e.message)
+    }
   }
 
 }

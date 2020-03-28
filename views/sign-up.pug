@@ -11,11 +11,17 @@ html(lang='en')
     include partials/main-nav.pug
     .main-heading__container
       h1.main-heading Sign Up
+    if error
+      .error-message.message=error
+    else if message 
+      .status-message.message=message
     article.new-post
       form.new-user__form(method='POST', action='/users/new')
+        input(name="_csrf", type="hidden", value=csrfToken)
         input(name="name", type='text', placeholder="Name")
         input(name="email", type='text' placeholder="email")
-        input(name="password", type='text' placeholder="password")
-        input(name="imageURL", type='email' placeholder="image URL")
+        input(name="password", type='password' placeholder="password")
+        input(name="imageURL", type='text' placeholder="image URL")
         button.submit-button(type="submit") Sign Up!
-    footer
+    
+    script(src="/js/scripts.js")

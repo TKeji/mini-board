@@ -13,7 +13,6 @@ const {ObjectId} = require("mongodb")
 
 class Post{
   constructor(message, author = {_id: undefined, username: "Admin", imageURL}){
-    console.log(author)
     this._id
     this.message = message 
     this.updatedAt = undefined
@@ -36,13 +35,14 @@ class Post{
     }
   }
 
-  static async fetchAll(skip=0, noPerPage=5){
+  static async fetchAll(userId, skip=0, noPerPage=5){
     const Post = getDB().collection(collectionName)
     const sortFilter = {
       "updatedAt": -1
     }
     try{
-      return await Post.find({}).limit(noPerPage).skip(skip*noPerPage).sort(sortFilter).toArray()
+      return await Post.find().sort(sortFilter).limit(noPerPage).skip(skip*noPerPage).toArray()
+      // return await Post.find({"author._id": ObjectId(userId)}).limit(noPerPage).skip(skip*noPerPage).sort(sortFilter).toArray()
     } catch(e){
       throw Error("Unable to fetch posts")
     }
@@ -74,6 +74,20 @@ class Post{
       return await Post.deleteOne({_id: ObjectId(id)})
     }catch(e){
       throw new Error("Unable to delete Post")
+    }
+  }
+
+  static async findAllByUser(id, noPerPage, skip){
+    const Post = getDB().collection(collectionName)
+    const sortFilter = {
+      "updatedAt": -1
+    }
+    try{
+      return await Post.find({"author._id": ObjectId(id)}).limit(noPerPage).skip(skip*noPerPage).sort(sortFilter).toArray()
+      return Post.find({"author._id": ObjectId(id)})
+    }catch(e){
+      console.log(e.message)
+      throw new Error("Unable get Users Posts")
     }
   }
 }

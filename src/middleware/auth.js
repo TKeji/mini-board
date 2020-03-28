@@ -17,9 +17,7 @@ const isAuthorized = async(req, res, next)=>{
   try{
     const post = await Post.findById(req.params.id)
     req.post = post 
-    console.log("POST\n", post)
-    console.log(req.session)
-    
+  
     // Check if the current session user is authorized 
     if (req.session.userId.toString() !== post.author._id.toString()){
       throw new Error("Unauthorized")
@@ -27,8 +25,7 @@ const isAuthorized = async(req, res, next)=>{
     next()
 
   }catch(e){
-    console.log(e)
-    // throw new Error("Not Authorized")
+    console.log(e.message)
     res.redirect("/")
   }
   // next()

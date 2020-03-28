@@ -8,7 +8,7 @@ header
       li.main-nav__item
         a(href='/users/logout') Logout
       li.main-nav__item
-        a(href='/users/safkldj') My Profile
+        a(href=`/users/${userId}`) My Profile
     if !loggedIn
       li.main-nav__item
         a(href='/users/new') Register

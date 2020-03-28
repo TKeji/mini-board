@@ -3,6 +3,7 @@ const express = require("express")
 const methodOverride = require("method-override")
 const session = require("express-session")
 const mongoDBStore = require('connect-mongodb-session')(session);
+const csurf = require("csurf")
 
 const postsRouter = require("./routes/posts")
 const usersRouter = require("./routes/users")
@@ -12,9 +13,11 @@ const User = require("./models/user")
 
 // Constants 
 const TEN_MINS = 1000*60*10
+const TEN_HOURS = 1000*60*6*10
 const SESS_AGE = TEN_MINS
 
 const app = express()
+const csrfProtection = csurf()
 
 // Useful paths 
 const publicDir = path.join(__dirname, "..", "/public")
@@ -43,11 +46,11 @@ app.use(session({
     sameSite: true
   }
 }))
+// set up csurft protection 
+app.use(csrfProtection)
 
 // Set up user onto every req 
 app.use(async(req, res, next)=>{
-  console.log("New request------")
-  console.log(req.session.userId)
   req.session.isLoggedIn = false
   if (req.session.userId){
     res.locals.user = await User.findById(req.session.userId)

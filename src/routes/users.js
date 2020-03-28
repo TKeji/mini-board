@@ -1,6 +1,7 @@
 // For /users requests
 const express = require("express")
 const router = express.Router()
+const {isAuthenticated} = require("../middleware/auth")
 
 const usersController = require("../controllers/users")
 
@@ -14,11 +15,11 @@ router.get("/login", usersController.loginPage)
 router.post("/login", usersController.login)
 
 // Logout
-router.get("/logout", usersController.logout)
+router.get("/logout", isAuthenticated, usersController.logout)
 
 // View Profile 
-router.get("/:id", usersController.profilePage)
-
+router.get("/:id", isAuthenticated, usersController.profilePage)
+router.delete("/:id", isAuthenticated, usersController.deleteProfile)
 
 
 

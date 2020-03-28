@@ -27,6 +27,14 @@ h3{
   color: #8C6E5D; 
 }
 
+.bottom-spacing{
+  margin-bottom: 3rem; 
+}
+
+.top-spacing{
+  margin-top: 3rem; 
+}
+
 /* Header Styling */
 header{
   width: 100vw; 
@@ -224,4 +232,55 @@ header{
 
 .new-user__form > .submit-button{
   height: 3rem; 
+}
+
+
+/* Add Ons */
+/* Flash messages */
+.message{
+  min-width: 300px;
+  width: 30%; 
+  /* height: 3rem; */
+  text-align: center;
+  padding: 0.3rem 0.1rem; 
+  margin: 0 auto; 
+  opacity: 1 ; 
+  overflow:hidden; 
+  transition:opacity 0.8s cubic-bezier(0.51, 0.21, 0.67, 0.27);
+}
+.error-message{
+  background-color:rgb(236, 153, 145);
+  color:rgb(143, 14, 3); 
+  border: 1px solid rgb(143, 14, 3);
+}
+
+.status-message{
+  background-color:rgb(104, 204, 109);
+  color:rgb(56, 141, 63);
+  border: 1px solid rgb(37, 110, 43);
+}
+
+/* Profile Page */
+.profile__container{
+  margin-top: 2rem;
+  display: flex; 
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.delete-user__form{
+  width: 100%; 
+  display: flex;
+  justify-content: flex-end;
+}
+
+.delete-user__button{
+  display: inline-block;
+  background-color: #FF3D00;
+  border: 1px solid rgb(143, 14, 3);
+  color: #F2F2F2; 
+  padding: 0.8rem 1rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
 }

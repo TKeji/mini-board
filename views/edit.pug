@@ -11,11 +11,17 @@ html(lang='en')
     include partials/main-nav.pug
     .main-heading__container
       h1.main-heading Edit Post
+    if error
+      .error-message.message=error
+    else if message 
+      .status-message.message=message
     article.new-post
-      form.new-post__form(method='POST', action=`/posts/${_id}?_method=PATCH`)
+      form.new-post__form(method='POST', action=`/posts/${post._id}?_method=PATCH`)
+        input(name="_csrf", type="hidden", value=csrfToken)
         label.author-label(for='author', name="author")
           | Author
-          input(name="author", type='text', value=author.username disabled)
-        textarea(placeholder='Tell the world something...', name='content') #{message}
+          input(name="author", type='text', value=post.author.username disabled)
+        textarea(placeholder='Tell the world something...', name='content') #{post.message}
         button.submit-button(type="submit") Submit
     footer
+  scri
