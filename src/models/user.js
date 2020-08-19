@@ -85,7 +85,6 @@ class User {
          const { password } = userDetails;
          const hash = await bcrypt.hash(password, SALT);
          userDetails.password = hash;
-         console.log("NEW USER\n", userDetails);
          const res = await getdb()
             .collection(collectionName)
             .insertOne(userDetails);
