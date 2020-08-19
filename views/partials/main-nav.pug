@@ -1,0 +1,17 @@
+header
+  ul.main-nav
+    li.main-nav__item
+      a(href='/posts') Home
+    if loggedIn
+      li.main-nav__item
+        a(href='/posts/new') New Post
+      li.main-nav__item
+        a(href='/users/logout') Logout
+      li.main-nav__item
+        a(href=`/users/${userId}`) My Profile
+    if !loggedIn
+      li.main-nav__item
+        a(href='/users/new') Register
+      li.main-nav__item
+        a(href='/users/login') Login
+    

@@ -1,0 +1,22 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    link(href='https://fonts.googleapis.com/css2?family=Montserrat&family=Playfair+Display:wght@400;700&display=swap', rel='stylesheet')
+    link(href="/images/favicon_io/favicon-16x16.png", rel="icon")
+    link(rel='stylesheet', href='/css/styles.css')
+    title New Post
+  body
+    include partials/main-nav.pug
+    .main-heading__container
+      h1.main-heading Create New Post
+    article.new-post
+      form.new-post__form(method='POST', action='/posts')
+        label.author-label(for='author', name="author")
+          | Author
+          input(name="author", type='text', value=username disabled)
+        textarea(placeholder='Tell the world something...', name='content')
+        button.submit-button(type="submit") Submit
+        input(name="_csrf", type="hidden", value=csrfToken)
+    footer

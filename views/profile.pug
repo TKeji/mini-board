@@ -1,0 +1,43 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    link(href='https://fonts.googleapis.com/css2?family=Montserrat&family=Playfair+Display:wght@400;700&display=swap', rel='stylesheet')
+    link(href="/images/favicon_io/favicon-16x16.png", rel="icon")
+    link(rel='stylesheet', href='/css/styles.css')
+    script(src='https://kit.fontawesome.com/4e9b8779c6.js', crossorigin='anonymous')
+    title Mini Board - My Profile
+  body
+    include partials/main-nav.pug
+    .main-heading__container.profile__container
+      .thumbnail-container
+            img(src=user.avatarURL, alt='profile-pic')
+      h1.main-heading=user.name
+    if error
+      .error-message.message=error
+    else if message 
+      .status-message.message=message
+    article.card-container
+      each post in posts
+        .card
+          .thumbnail-container
+            img(src=post.author.imageURL, alt='profile-pic')
+          .card-content
+            h3=post.author.username
+            p=post.message
+            p.card-content__timestamp #{post.lastModified}
+            .icons
+              a(href=`/posts/${post._id}/edit`)
+                i.fas.fa-edit.icon#edit-icon
+              form#trash-form(method="POST", action=`/posts/${post._id}?_method=DELETE`)
+                input("name"="_csrf", type="hidden", value=csrfToken)
+                button#delete-button
+                  i.fas.fa-trash.fa-lg.icon#trash-icon
+      else 
+        h2.main-heading.bottom-spacing No Posts Yet!
+      form.delete-user__form(method="POST", action=`/users/${user._id}?_method=DELETE`)
+        input(name="_csrf", type="hidden", value=csrfToken)
+        button.delete-user__button(type="Submit") Delete Profile
+    
+    script(src="/js/scripts.js")

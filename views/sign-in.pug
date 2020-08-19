@@ -1,0 +1,25 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    link(href='https://fonts.googleapis.com/css2?family=Montserrat&family=Playfair+Display:wght@400;700&display=swap', rel='stylesheet')
+    link(href="/images/favicon_io/favicon-16x16.png", rel="icon")
+    link(rel='stylesheet', href='/css/styles.css')
+    title Mini Board - New Post
+  body
+    include partials/main-nav.pug
+    .main-heading__container
+      h1.main-heading Sign In
+    if error
+      .error-message.message=error
+    else if message 
+      .status-message.message=message
+    article.new-post
+      form.new-user__form(method='POST', action='/users/login')
+        input(name="email", type='email' placeholder="email")
+        input(name="password", type='password' placeholder="password")
+        button.submit-button(type="submit") Sign In!
+        input(name="_csrf", type="hidden", value=csrfToken)
+  
+    script(src="/js/scripts.js")
