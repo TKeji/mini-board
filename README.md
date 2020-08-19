@@ -5,4 +5,4 @@ It supports the CRUD operations.
 There is authorization and authentication using cookies and sessions. 
 
 ## Live on Heroku
-The app is live on heroky at [https://rhine-mini-board.herokuapp.com]
+The app is live [here](https://rhine-mini-board.herokuapp.com) on Heruku. 
